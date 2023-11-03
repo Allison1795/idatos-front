@@ -1,22 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
+import PlaylistDisplay from './containers/PlaylistDisplay';
+import Dashboard from './containers/Dashboard';
+import UserInput from './containers/UserInput';
 
-const CLIENT_ID = "1e339f88360b43a38d3434eef6bb69e7"
-const REDIRECT_URI = "http://localhost:3000"
-const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
-const RESPONSE_TYPE = "token"
-
-
-function App() {
-  const [count, setCount] = useState(0)
-
+const MainApp: React.FC = () => {
   return (
-    <>
-     <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login to Spotify</a>
-    </>
-  )
-}
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/playlist">Playlist</Link>
+            </li>
+            <li>
+              <Link to="/">Dashboard</Link>
+            </li>
+            <li>
+              <Link to="/user-input">UserInput</Link>
+            </li>
+          </ul>
+        </nav>
 
-export default App
+        <Routes>
+          <Route path="/playlist" element={<PlaylistDisplay />} />
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/user-input" element={<UserInput />} />
+        </Routes>
+      </div>
+    </Router>
+  );
+};
+
+export default MainApp;

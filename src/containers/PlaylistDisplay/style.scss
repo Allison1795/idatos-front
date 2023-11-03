@@ -1,0 +1,67 @@
+.playlist-display {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  padding: 2rem;
+  box-sizing: border-box;
+  justify-content: center;
+  margin: auto;
+  gap: 2rem;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    max-width: 670px;
+    width: 100%;
+    align-self: center;
+    padding: 2rem;
+    background-color: white;
+    box-sizing: border-box;
+    border-radius: 20px;
+    color: #0E0530;
+
+    &-title {
+      font-weight: 100;
+    }
+
+    &-song {
+      display: flex;
+      padding: 0.5rem 0;
+      gap: 0.5rem;
+      align-items: center;
+      box-sizing: border-box;
+      border-bottom: 1px solid #e7e6e4;
+
+      &-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      &-img {
+        max-width: 50px;
+        max-height: 50px;
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+
+  &__title {
+    font-size: 3rem;
+    text-align: start;
+    margin-bottom: 0;
+    max-width: 670px;
+    width: 100%;
+    align-self: center;
+  }
+
+  &__subtitle {
+    font-weight: 100;
+    max-width: 670px;
+    width: 100%;
+    align-self: center;
+  }
+}
