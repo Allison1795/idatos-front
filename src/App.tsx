@@ -1,35 +1,66 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
+import PlaylistDisplay from './containers/PlaylistDisplay';
+import Dashboard from './containers/Dashboard';
+import UserInput from './containers/UserInput';
 
-function App() {
-  const [count, setCount] = useState(0)
+import './App.css';
+import Loader from './components/loader';
+import PrivateRoute from './components/PrivateRoute';
+import PublicRoute from './components/PublicRoute';
+
+const routes = [
+  {
+    component: PublicRoute(Dashboard),
+    path: "/",
+  },
+  {
+    component: PrivateRoute(PlaylistDisplay),
+    path: "/playlist",
+  },
+  {
+    component: PrivateRoute(UserInput),
+    path: "/user-input",
+  },
+];
+
+const MainApp: React.FC = () => {
+  const [token, setToken] = useState<RegExpMatchArray | null>(null);
+
+  useEffect(() => {
+    const tokenData = window.location.href.match(/access_token=([^&]*)/);
+    if (tokenData) {
+      setToken(tokenData);
+      localStorage.setItem('token', tokenData![1]);
+    }
+  }, [])
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <Router>
+      {/* <div> */}
+      <Routes>
+        {
+          routes.map(({ component: Component, path }) => (
+            <Route path={path} element={Component} />
+          ))
+        }
+      </Routes>
+      {/* </div> */}
+    </Router>
+  );
+};
 
-export default App
+export default MainApp;
+
+
+// <Router>
+// <div className="app__container">
+//   {
+//     token ? (
+//       <UserInput />
+//     ) : (
+//       <Dashboard />
+//     )
+//   }
+// </div>
+// </Router>

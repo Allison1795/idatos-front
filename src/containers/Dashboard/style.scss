@@ -1,0 +1,39 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  padding: 1rem;
+  box-sizing: border-box;
+  max-width: 670px;
+  justify-content: center;
+  margin: auto;
+  height: 100vh;
+  align-items: center;
+
+  &__title {
+    font-size: 3rem;
+    text-align: start;
+    margin-bottom: 0;
+  }
+
+  &__subtitle {
+    font-weight: 100;
+  }
+
+  &__button {
+    max-width: fit-content;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    background-color: #FF6440;
+    font-weight: 400;
+    font-size: 0.9rem;
+    border-radius: 4rem;
+    line-height: 1;
+    border: none;
+    color: #0E0530;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
