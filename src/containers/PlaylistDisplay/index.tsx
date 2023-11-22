@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Palette } from "color-thief-react"; 
-import Sebita from './../../assets/sebita.jpeg';
 
 import './style.scss';
 
@@ -10,14 +9,14 @@ const PlaylistDisplay = () => {
 
   const { state } = useLocation();
 
-  const [playlistTitle, setPlaylistTitle] = useState<string>(''); 
+  const [playlist, setPlaylist] = useState<string>(''); 
   const [movieTitle, setMovieTitle] = useState<string>(''); 
-  const [songs, setSongs] = useState<string[]>([]); 
+  const [playlistImage, setPlaylistImage] = useState<string[]>([]); 
 
   useEffect(() => {
     if (state) {
-      setPlaylistTitle(state.playlist_name);
-      setSongs(state.songs);
+      setPlaylist(state.playlist);
+      setPlaylistImage(state.image);
       setMovieTitle(state.movie_name);
     } else {
       navigate('/user-input');
@@ -25,7 +24,7 @@ const PlaylistDisplay = () => {
   }, [state, navigate]); 
 
   return (
-    <Palette src={Sebita} crossOrigin="anonymous" format="hex" colorCount={4}>
+    <Palette src={playlistImage} crossOrigin="anonymous" format="hex" colorCount={4}>
       {({ data, loading }: { data: string[], loading: boolean }) => (
         loading ? (
           <>Loading..</>
@@ -45,12 +44,7 @@ const PlaylistDisplay = () => {
             <div className="playlist-display__container">
               <h3 className="playlist-display__container-title">Your playlist {playlistTitle} was created using the soundtrack of {movieTitle}</h3>
               <div className="playlist-display__container-song-list">
-                {songs.map((song: string) => (
-                  <div className="playlist-display__container-song" key={song}>
-                    <img src={Sebita} alt="Song" className="playlist-display__container-song-img" />
-                    <span className="playlist-display__container-song-title">{song}</span>
-                  </div>
-                ))}
+                <iframe />
               </div>
             </div>
           </div>

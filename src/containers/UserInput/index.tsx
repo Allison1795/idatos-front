@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { createPlaylist } from "../../services/public.service";
 
 import './style.scss';
+import Loader from "../../components/loader";
 
 type FormData = {
   userInput: string;
@@ -42,22 +43,19 @@ const UserInput = () => {
             movie_name: userInput,
             playlist: data.playlist,
             image: data.image,
-            // playlist_name: userInput,
-            // songs: [
-            //   'New song',
-            //   'Second song',
-            //   'Third song',
-            // ],
           },
         },
       );
-    } catch (error) {
-      console.log('error', error);
-      setError('Something went wrong! Please try again');
+    } catch ({ response: { data: { error } } }) {
+      setError(error || 'Something went wrong! Please try again');
     } finally {
       setIsLoading(false);
     }
   };
+
+  if (isLoading) {
+    return <Loader/>
+  }
 
   return (
     <div className="user-input">
