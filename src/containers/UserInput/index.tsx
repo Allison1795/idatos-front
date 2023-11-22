@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-import createPlaylist from "../../services/public.service";
+import { createPlaylist } from "../../services/public.service";
 
 import './style.scss';
 
@@ -30,23 +30,29 @@ const UserInput = () => {
     setIsLoading(true);
 
     try {
-      const { data } = await createPlaylist(formData);
+      console.log('userInput', userInput)
+      const data = await createPlaylist(userInput);
+
+      console.log('data');
 
       navigate(
         '/playlist',
         {
           state: {
             movie_name: userInput,
-            playlist_name: userInput,
-            songs: [
-              'New song',
-              'Second song',
-              'Third song',
-            ],
+            playlist: data.playlist,
+            image: data.image,
+            // playlist_name: userInput,
+            // songs: [
+            //   'New song',
+            //   'Second song',
+            //   'Third song',
+            // ],
           },
         },
       );
-    } catch {
+    } catch (error) {
+      console.log('error', error);
       setError('Something went wrong! Please try again');
     } finally {
       setIsLoading(false);
