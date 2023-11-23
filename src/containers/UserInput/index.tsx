@@ -31,7 +31,6 @@ const UserInput = () => {
     setIsLoading(true);
 
     try {
-      console.log('userInput', userInput)
       const data = await createPlaylist(userInput);
 
       console.log('data');
