@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Palette } from "color-thief-react";
 
 interface CustomWindow extends Window {
@@ -36,7 +36,8 @@ const PlaylistDisplay = () => {
       const options = {
         uri: playlist,
       };
-      const callback = (EmbedController) => { };
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+      const callback = () => { };
       IFrameAPI.createController(element, options, callback);
     };
   }, [playlist]);
@@ -54,6 +55,9 @@ const PlaylistDisplay = () => {
               background: `linear-gradient(to right, ${data?.join(', ')})`,
             }}
           >
+            <Link to="/user-input" className="playlist-display__back-button">
+              <p>create another playlist!</p>
+            </Link>
             <h1 className="playlist-display__title">
               We've finally created your {movieTitle} playlist!
             </h1>

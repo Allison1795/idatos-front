@@ -3,8 +3,6 @@
 .remix {
 	--diameter: 200px;
 	--c-white: #fff;
-	/* naming things is hard */
-	/* https://www.color-name.com */
 	--c-anti-flash-white: #f3f3f3;
 	--c-gainsboro: #ddd;
 	--c-mid-gray: #bbb;
@@ -86,10 +84,6 @@
 
 @media (prefers-reduced-motion) {
 	.remix {
-		// if you use this as a loading spinner,
-		// motion can still be used to indicate
-		// its state but we can make it much 
-		// slower and more stable
 		animation-timing-function: linear;
 		animation-duration: 8500ms;
 	}

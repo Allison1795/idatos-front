@@ -7,12 +7,4 @@ const HTTP = axios.create({
   },
 });
 
-HTTP.interceptors.request.use((req) => {
-  // const token = localStorage.getItem('token');
-
-  // req.headers['X-Token'] = token;
-
-  return req;
-});
-
 export default HTTP;
