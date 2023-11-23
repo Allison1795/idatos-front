@@ -7,6 +7,9 @@
   justify-content: center;
   margin: auto;
   gap: 2rem;
+  width: 100vw;
+  height: 100%;
+  align-items: center;
 
   &__container {
     display: flex;
@@ -36,6 +39,7 @@
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
+        width: 50%;
       }
 
       &-img {
@@ -56,6 +60,7 @@
     max-width: 670px;
     width: 100%;
     align-self: center;
+    text-align: center;
   }
 
   &__subtitle {
