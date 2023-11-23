@@ -25,7 +25,7 @@ const UserInput = () => {
 
   useEffect(() => {
     if (error) setError(null); // Set error to null instead of an empty string
-  }, [watch('userInput')]);
+  }, [watch('userInput'), error]);
 
   const onSubmit: SubmitHandler<FormData> = async ({ userInput }) => {
     setIsLoading(true);
