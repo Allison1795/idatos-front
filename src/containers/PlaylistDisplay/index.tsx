@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Palette } from "color-thief-react"; 
+import { Palette } from "color-thief-react";
+
+interface CustomWindow extends Window {
+  onSpotifyIframeApiReady?: (IFrameAPI: any) => void;
+}
+
+declare const window: CustomWindow;
 
 import './style.scss';
 
@@ -9,9 +15,9 @@ const PlaylistDisplay = () => {
 
   const { state } = useLocation();
 
-  const [playlist, setPlaylist] = useState<string>(''); 
-  const [movieTitle, setMovieTitle] = useState<string>(''); 
-  const [playlistImage, setPlaylistImage] = useState<string[]>([]); 
+  const [playlist, setPlaylist] = useState<string>('');
+  const [movieTitle, setMovieTitle] = useState<string>('');
+  const [playlistImage, setPlaylistImage] = useState<string[]>([]);
 
   useEffect(() => {
     if (state) {
@@ -21,7 +27,20 @@ const PlaylistDisplay = () => {
     } else {
       navigate('/user-input');
     }
-  }, [state, navigate]); 
+  }, [state, navigate]);
+
+  useEffect(() => {
+    console.log('playlist', playlist);
+    window.onSpotifyIframeApiReady = (IFrameAPI) => {
+      const element = document.getElementById('embed-iframe');
+      const options = {
+        uri: playlist,
+      };
+      const callback = (EmbedController) => { };
+      IFrameAPI.createController(element, options, callback);
+    };
+  }, [playlist]);
+
 
   return (
     <Palette src={playlistImage} crossOrigin="anonymous" format="hex" colorCount={4}>
@@ -36,16 +55,13 @@ const PlaylistDisplay = () => {
             }}
           >
             <h1 className="playlist-display__title">
-              We've finally created your playlist!
+              We've finally created your {movieTitle} playlist!
             </h1>
             <h2 className="playlist-display__subtitle">
-              Go ahead and take a look at it in your Spotify profile
+              Go ahead and take a look at it in your Spotify profile, or listen to it right here!
             </h2>
-            <div className="playlist-display__container">
-              <h3 className="playlist-display__container-title">Your playlist {playlistTitle} was created using the soundtrack of {movieTitle}</h3>
-              <div className="playlist-display__container-song-list">
-                <iframe />
-              </div>
+            <div className="playlist-display__container-song-list">
+              <div id="embed-iframe"></div>
             </div>
           </div>
         )
