@@ -13,7 +13,6 @@ Asegúrate de tener instalado Node.js en tu sistema. Puedes descargarlo desde [n
 3. Ejecuta el siguiente comando para instalar las dependencias:
    `npm install`
 
-
 ## Uso
 
 Una vez que las dependencias se hayan instalado correctamente, puedes iniciar el proyecto con el siguiente comando:

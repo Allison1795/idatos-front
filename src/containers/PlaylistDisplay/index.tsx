@@ -29,19 +29,23 @@ const PlaylistDisplay = () => {
     }
   }, [state, navigate]);
 
-  useEffect(() => {
-    console.log('playlist', playlist);
-    window.onSpotifyIframeApiReady = (IFrameAPI) => {
-      const element = document.getElementById('embed-iframe');
-      const options = {
-        uri: playlist,
-      };
-      // eslint-disable-next-line @typescript-eslint/no-empty-function
-      const callback = () => { };
-      IFrameAPI.createController(element, options, callback);
+  window.onSpotifyIframeApiReady = (IFrameAPI) => {
+    const element = document.getElementById('embed-iframe');
+    const options = {
+      uri: playlist,
     };
-  }, [playlist]);
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    const callback = () => { };
+    IFrameAPI.createController(element, options, callback);
+  };
 
+  useEffect(() => {
+    if (playlist && !localStorage.getItem('playlist')) {
+      localStorage.setItem('playlist', playlist);
+      window.location.reload();
+    }
+
+  }, [playlist])
 
   return (
     <Palette src={playlistImage} crossOrigin="anonymous" format="hex" colorCount={4}>

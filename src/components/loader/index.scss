@@ -1,5 +1,3 @@
-
-
 .remix {
 	--diameter: 200px;
 	--c-white: #fff;
@@ -24,39 +22,37 @@
 	border-radius: 9999px;
 	border: 5px solid var(--c-gainsboro);
 	bacground-color: var(--c-mid-gray);
-	background-image: conic-gradient(
-		var(--c-white),
-		var(--c-anti-flash-white),
-		var(--c-gainsboro),
-		var(--c-mid-gray),
-		var(--c-dark-gray),
-		var(--c-black-shadows),
-		var(--c-pink-lavender),
-		var(--c-white),
-		var(--c-stale-beige),
-		var(--c-light-moss-green),
-		var(--c-languid-lavender),
-		var(--c-platinum),
-		var(--c-pink-lavender),
-		var(--c-gainsboro),
-		var(--c-anti-flash-white),
-		var(--c-white),
-		var(--c-gainsboro),
-		var(--c-mid-gray),
-		var(--c-dark-gray),
-		var(--c-black-shadows),
-		var(--c-pink-lavender),
-		var(--c-white),
-		var(--c-stale-beige),
-		var(--c-light-moss-green),
-		var(--c-light-periwinkle),
-		var(--c-languid-lavender),
-		var(--c-platinum),
-		var(--c-pink-lavender),
-		var(--c-mid-gray),
-		var(--c-gainsboro),
-		var(--c-white)
-	);
+	background-image: conic-gradient(var(--c-white),
+			var(--c-anti-flash-white),
+			var(--c-gainsboro),
+			var(--c-mid-gray),
+			var(--c-dark-gray),
+			var(--c-black-shadows),
+			var(--c-pink-lavender),
+			var(--c-white),
+			var(--c-stale-beige),
+			var(--c-light-moss-green),
+			var(--c-languid-lavender),
+			var(--c-platinum),
+			var(--c-pink-lavender),
+			var(--c-gainsboro),
+			var(--c-anti-flash-white),
+			var(--c-white),
+			var(--c-gainsboro),
+			var(--c-mid-gray),
+			var(--c-dark-gray),
+			var(--c-black-shadows),
+			var(--c-pink-lavender),
+			var(--c-white),
+			var(--c-stale-beige),
+			var(--c-light-moss-green),
+			var(--c-light-periwinkle),
+			var(--c-languid-lavender),
+			var(--c-platinum),
+			var(--c-pink-lavender),
+			var(--c-mid-gray),
+			var(--c-gainsboro),
+			var(--c-white));
 	clip-path: url(#cd-clip-path);
 	animation-name: spin;
 	animation-duration: 1500ms;
@@ -82,6 +78,20 @@
 	mix-blend-mode: hard-light;
 }
 
+.loader {
+	&__container {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+	}
+
+	&__text {
+		color: #fff;
+		margin-top: 40px;
+	}
+}
+
 @media (prefers-reduced-motion) {
 	.remix {
 		animation-timing-function: linear;
@@ -93,6 +103,7 @@
 	0% {
 		transform: rotate(0deg);
 	}
+
 	100% {
 		transform: rotate(720deg);
 	}

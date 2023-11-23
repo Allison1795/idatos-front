@@ -31,10 +31,9 @@ const UserInput = () => {
     setIsLoading(true);
 
     try {
+      localStorage.removeItem('playlist');
+
       const data = await createPlaylist(userInput);
-
-      console.log('data');
-
       navigate(
         '/playlist',
         {

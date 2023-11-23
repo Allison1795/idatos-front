@@ -1,7 +1,7 @@
 import './index.scss';
 
 const Loader = () => (
-  <>
+  <div className="loader__container">
     <div className="remix" role="img" aria-label="Spinning CD made with CSS"></div>
     <svg width="0" height="0">
       <defs>
@@ -10,8 +10,8 @@ const Loader = () => (
         </clipPath>
       </defs>
     </svg>
-
-  </>
+    <p className="loader__text"> ...Mixing movie magic into your playlist! </p>
+  </div>
 
 
 );
