@@ -35,7 +35,7 @@ const MainApp: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (timedOut) {
+    if (timedOut && localStorage.getItem('token')) {
       localStorage.removeItem('token');
       setTimedOut(false);
 
